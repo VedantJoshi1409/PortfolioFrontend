@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Chess</title>
+  <link rel="stylesheet" href="css/SFNNUE.css">
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+  <p id="fen">rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w</p>
+
+  <div id="gameboard">
+    <img src="img/blue.png" id="board" class="chess-board" alt="Chess Board"/>
+
+    <div class="square a8"><img src="img/pieces/bR.png" id="bR1" class="chess-piece" alt="Black Rook" draggable="true"/></div>
+    <div class="square b8"><img src="img/pieces/bN.png" id="bN1" class="chess-piece" alt="Black Knight" draggable="true"/></div>
+    <div class="square c8"><img src="img/pieces/bB.png" id="bB1" class="chess-piece" alt="Black Bishop" draggable="true"/></div>
+    <div class="square d8"><img src="img/pieces/bQ.png" id="bQ" class="chess-piece" alt="Black Queen" draggable="true"/></div>
+    <div class="square e8"><img src="img/pieces/bK.png" id="bK" class="chess-piece" alt="Black King" draggable="true"/></div>
+    <div class="square f8"><img src="img/pieces/bB.png" id="bB2" class="chess-piece" alt="Black Bishop" draggable="true"/></div>
+    <div class="square g8"><img src="img/pieces/bN.png" id="bN2" class="chess-piece" alt="Black Knight" draggable="true"/></div>
+    <div class="square h8"><img src="img/pieces/bR.png" id="bR2" class="chess-piece" alt="Black Rook" draggable="true"/></div>
+
+
+    <div class="square a7"><img src="img/pieces/bP.png" id="bP1" class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+    <div class="square b7"><img src="img/pieces/bP.png" id="bP2" class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+    <div class="square c7"><img src="img/pieces/bP.png" id="bP3" class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+    <div class="square d7"><img src="img/pieces/bP.png" id="bP4" class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+    <div class="square e7"><img src="img/pieces/bP.png" id="bP5" class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+    <div class="square f7"><img src="img/pieces/bP.png" id="bP6" class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+    <div class="square g7"><img src="img/pieces/bP.png" id="bP7" class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+    <div class="square h7"><img src="img/pieces/bP.png" id="bP8" class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+
+    <div class="square a6"></div>
+    <div class="square b6"></div>
+    <div class="square c6"></div>
+    <div class="square d6"></div>
+    <div class="square e6"></div>
+    <div class="square f6"></div>
+    <div class="square g6"></div>
+    <div class="square h6"></div>
+
+    <div class="square a5"></div>
+    <div class="square b5"></div>
+    <div class="square c5"></div>
+    <div class="square d5"></div>
+    <div class="square e5"></div>
+    <div class="square f5"></div>
+    <div class="square g5"></div>
+    <div class="square h5"></div>
+
+    <div class="square a4"></div>
+    <div class="square b4"></div>
+    <div class="square c4"></div>
+    <div class="square d4"></div>
+    <div class="square e4"></div>
+    <div class="square f4"></div>
+    <div class="square g4"></div>
+    <div class="square h4"></div>
+
+    <div class="square a3"></div>
+    <div class="square b3"></div>
+    <div class="square c3"></div>
+    <div class="square d3"></div>
+    <div class="square e3"></div>
+    <div class="square f3"></div>
+    <div class="square g3"></div>
+    <div class="square h3"></div>
+
+    <div class="square a2"><img src="img/pieces/wP.png" id="wP1" class="chess-piece" alt="White Pawn" draggable="true"/></div>
+    <div class="square b2"><img src="img/pieces/wP.png" id="wP2" class="chess-piece" alt="White Pawn" draggable="true"/></div>
+    <div class="square c2"><img src="img/pieces/wP.png" id="wP3" class="chess-piece" alt="White Pawn" draggable="true"/></div>
+    <div class="square d2"><img src="img/pieces/wP.png" id="wP4" class="chess-piece" alt="White Pawn" draggable="true"/></div>
+    <div class="square e2"><img src="img/pieces/wP.png" id="wP5" class="chess-piece" alt="White Pawn" draggable="true"/></div>
+    <div class="square f2"><img src="img/pieces/wP.png" id="wP6" class="chess-piece" alt="White Pawn" draggable="true"/></div>
+    <div class="square g2"><img src="img/pieces/wP.png" id="wP7" class="chess-piece" alt="White Pawn" draggable="true"/></div>
+    <div class="square h2"><img src="img/pieces/wP.png" id="wP8" class="chess-piece" alt="White Pawn" draggable="true"/></div>
+
+    <div class="square a1"><img src="img/pieces/wR.png" id="wR1" class="chess-piece" alt="White Rook" draggable="true"/></div>
+    <div class="square b1"><img src="img/pieces/wN.png" id="wN1" class="chess-piece" alt="White Knight" draggable="true"/></div>
+    <div class="square c1"><img src="img/pieces/wB.png" id="wB1" class="chess-piece" alt="White Bishop" draggable="true"/></div>
+    <div class="square d1"><img src="img/pieces/wQ.png" id="wQ" class="chess-piece" alt="White Queen" draggable="true"/></div>
+    <div class="square e1"><img src="img/pieces/wK.png" id="wK" class="chess-piece" alt="White King" draggable="true"/></div>
+    <div class="square f1"><img src="img/pieces/wB.png" id="wB2" class="chess-piece" alt="White Bishop" draggable="true"/></div>
+    <div class="square g1"><img src="img/pieces/wN.png" id="wN2" class="chess-piece" alt="White Knight" draggable="true"/></div>
+    <div class="square h1"><img src="img/pieces/wR.png" id="wR2" class="chess-piece" alt="White Rook" draggable="true"/></div>
+  </div>
+
+  <div id="piece-menu" class="piece-menu">
+    <div class="square bP"><img src="img/pieces/bP.png" id="menu-bP" class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+    <div class="square wP"><img src="img/pieces/wP.png" id="menu-wP" class="chess-piece" alt="White Pawn" draggable="true"/></div>
+    <div class="square bR"><img src="img/pieces/bR.png" id="menu-bR" class="chess-piece" alt="Black Rook" draggable="true"/></div>
+    <div class="square wR"><img src="img/pieces/wR.png" id="menu-wR" class="chess-piece" alt="White Rook" draggable="true"/></div>
+    <div class="square bN"><img src="img/pieces/bN.png" id="menu-bN" class="chess-piece" alt="Black Knight" draggable="true"/></div>
+    <div class="square wN"><img src="img/pieces/wN.png" id="menu-wN" class="chess-piece" alt="White Knight" draggable="true"/></div>
+    <div class="square bB"><img src="img/pieces/bB.png" id="menu-bB" class="chess-piece" alt="Black Bishop" draggable="true"/></div>
+    <div class="square wB"><img src="img/pieces/wB.png" id="menu-wB" class="chess-piece" alt="White Bishop" draggable="true"/></div>
+    <div class="square bQ"><img src="img/pieces/bQ.png" id="menu-bQ" class="chess-piece" alt="Black Queen" draggable="true"/></div>
+    <div class="square wQ"><img src="img/pieces/wQ.png" id="menu-wQ" class="chess-piece" alt="White Queen" draggable="true"/></div>
+    <div class="square bK"><img src="img/pieces/bK.png" id="menu-bK" class="chess-piece" alt="Black King" draggable="true"/></div>
+    <div class="square wK"><img src="img/pieces/wK.png" id="menu-wK" class="chess-piece" alt="White King" draggable="true"/></div>
+  </div>
+
+
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>
