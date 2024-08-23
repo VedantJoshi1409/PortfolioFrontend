@@ -44,6 +44,7 @@ squares.forEach((square) => {
 let beingDragged
 let clone
 let menuPiece
+let side = true
 
 function dragStart(e) {
   beingDragged = e.target
@@ -74,6 +75,7 @@ function dragLeave (e){
 function dragDrop (e){
   e.preventDefault()
   e.target.classList.remove("highlight")
+  side = isLowerCase(pieceMap[beingDragged.id])
 
   if (e.target.parentElement.closest("#gameboard")) {
     let square
@@ -113,7 +115,6 @@ function dragEnd (){
 
 function getFen() {
   let square;
-  let piece;
   let pieceCount = 0;
   let spaceCount = 0;
   let fen = "";
@@ -144,10 +145,19 @@ function getFen() {
       spaceCount++;
     }
   }
+  if (side) {
+    fen += " w"
+  } else {
+    fen += " b"
+  }
 
   if (pieceCount > 32) {
     fenDisplay.textContent = "Invalid: Too many pieces";
   } else {
     fenDisplay.textContent = fen;
   }
+}
+
+function isLowerCase(char) {
+  return char === char.toLowerCase() && char !== char.toUpperCase();
 }
