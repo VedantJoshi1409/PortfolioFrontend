@@ -1,6 +1,8 @@
 const pieces = document.querySelectorAll(".chess-piece");
 const squares = document.querySelectorAll(".square");
 const fenDisplay = document.querySelector("#fen");
+const layers = document.querySelectorAll(".layer");
+const nodes = document.querySelectorAll(".node");
 
 const fc0Map = document.querySelectorAll(".fc0.node")
 const fc0P = document.querySelectorAll(".fc0_p")
@@ -20,6 +22,13 @@ const ac1P = document.querySelectorAll(".ac1_p")
 
 const fc2Map = document.querySelector(".fc2.node")
 const fc2P = document.querySelector(".fc2_p")
+
+const infoMenu = document.querySelector("#info-menuP");
+const evalCalc = document.querySelector("#eval-calcP");
+
+const layerDesc = document.querySelector("#layerDesc");
+const layerDescContent = document.querySelector("#layerDescContent");
+const descClose = document.querySelector("#desc-close");
 
 const pieceMap = {
   'wP1': 'P', 'wP2': 'P', 'wP3': 'P', 'wP4': 'P', 'wP5': 'P', 'wP6': 'P', 'wP7': 'P', 'wP8': 'P',
@@ -60,6 +69,13 @@ squares.forEach((square) => {
   square.addEventListener("dragend", dragEnd)
 })
 
+layers.forEach((layer) =>  {
+  layer.addEventListener("click", layerClick)
+})
+
+descClose.addEventListener("click", layerDescClose)
+
+let small
 updateHeatmap()
 
 let beingDragged
@@ -208,8 +224,20 @@ function updateHeatmap() {
     let ac1 = new Array(32)
     let fc2
     let eval
-    let small
     let bucket
+    let psqt
+    let npm
+    let shuffling
+    let simpleEval
+    let pawnCount
+
+    let positional
+    let nnue
+    let adjustedNNUE
+    let complexity
+    let evaluation
+    let adjustedEval
+    let clampedEval
 
     fetch(url)
       .then(response => {
@@ -243,6 +271,11 @@ function updateHeatmap() {
         eval = data[6][0]
         small = data[7][0];
         bucket = data[8][0]
+        psqt = data[9][0]
+        npm = data[10][0]
+        shuffling = data[11][0]
+        simpleEval = data[12][0]
+        pawnCount = data[13][0]
 
         // console.log(fc0)
         // console.log(acsq0)
@@ -287,6 +320,32 @@ function updateHeatmap() {
         fc2Map.style.backgroundColor = getColor(fc2, 15000, -15000, 1, false)
         fc2P.textContent = fc2;
 
+        infoMenu.innerHTML = `Bucket: ${bucket}
+                              <br>Net Used: ${small === 0 ? "nn-b1a57edbea57.nnue" : "nn-baff1ede1f90.nnue"}
+                              <br>Net Size: ${small === 0 ? "Big" : "Small"}
+                              <br>Simple Evaluation: ${simpleEval}
+                              <br>Piece Square Table Value: ${psqt}
+                              <br>Evaluation: ${eval}`
+
+        positional = fc2 + ((fc0[15] * 150 / 127)|0)
+        complexity = (Math.abs(psqt - positional) / 16) | 0
+        nnue = ((1000 * psqt + 1048 * positional) / 16384) | 0
+        adjustedNNUE = nnue - ((nnue * (complexity + Math.abs(simpleEval - nnue)) / 32768) | 0)
+        evaluation = (adjustedNNUE * (915 + npm + 9 * pawnCount) / 1024) | 0
+        adjustedEval = (evaluation * (200 - shuffling) / 214) | 0
+        clampedEval = Math.max(-31507, Math.min(adjustedEval, 31507))
+
+        evalCalc.innerHTML = `This is just the positional value. There are many variables in the total evaluation, lets calculate it!
+<br>PSQT (Piece Square Tables Value) = ${psqt}&emsp;&emsp;PawnCount = ${pawnCount}&emsp;&emsp;50MoveRuleCount = ${shuffling}
+<br>SimpleEvaluation = ${simpleEval}&emsp;&emsp;NPM: (Non Pawn Material) / 64 = ${npm}
+<br>Positional: (Z1[15] * 150 / 127) + Z3 = ${positional}&emsp;&emsp;Complexity: abs(PSQT - Positional) / 16 = ${complexity}
+<br>&emsp;<br>NNUE: (1000 * PSQT + 1048 * Positional) / 16384 = ${nnue}
+<br>AdjustedNNUE: NNUE - (NNUE * (Complexity + abs(SimpleEvaluation - NNUE)) / 32768) = ${adjustedNNUE}
+<br>Evaluation: AdjustedNNUE * (915 + NPM + 9 * PawnCount) / 1024 = ${evaluation}
+<br>AdjustedEvaluation: Evaluation * (200 - 50MoveRuleCount) / 214 = ${adjustedEval}
+<br>FinalEvaluation: clamp(AdjustedEvaluation, -31507, 31507) = ${clampedEval}
+<br>&emsp;<br>The evaluation for this position is ${clampedEval}!`
+
 
       })
       .catch(error => {
@@ -302,7 +361,7 @@ function getColor(value, max, min, opacity, linear) {
 
   if (!linear) {
     // value = 4 * Math.pow(value - 0.5, 3) + 0.5
-    value = Math.cbrt((value-0.5)/4)+0.5
+    value = Math.cbrt((value - 0.5) / 4) + 0.5
   }
   // console.log(normalizedValue);
 
@@ -324,4 +383,66 @@ function getColor(value, max, min, opacity, linear) {
 
   // Return the color as a string in the format "rgb(R, G, B)"
   return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+}
+
+function layerClick(e) {
+  let layer = e.target;
+  while (!layer.classList.contains('layer')) {
+    layer = layer.parentElement
+  }
+
+  let content
+  console.log(layer.id)
+  if (layer.id === "fc0") {
+    content = `Z1:<br>
+    Length: 16<br>
+    The board is turned into ${small === 0 ? 2560 : 128} inputs that get matrix multiplied by the respective weights and then have the respective biases added. This forms Z1!`
+
+  } else if (layer.id === "ac0+acSq0") {
+    content = `A1_Sq:<br>
+    Length: 15<br>
+    The first 15 indices of Z1 are inputted into a Squared Clipped ReLU function, min(Z1&sup2, 127) to form A1_Sq!<br>&emsp;<br>
+    A1_CR:<br>
+    Length: 15<br>
+    The first 15 indices of Z1 are inputted into a Clipped ReLU function, clamp(Z1, 0, 127) to form A1_CR!`;
+
+  } else if (layer.id === "acFinal0") {
+    content = `A1:<br>
+    Length: 30<br>
+    A1_CR is appended to the end of A1_Sq to form A1!`
+
+  } else if (layer.id === "fc1") {
+    content = `Z2:<br>
+    Length: 32<br>
+    A1 is matrix multiplied by the respective weights and then have the respective biases added. This forms Z2!`
+
+  } else if (layer.id === "ac1") {
+    content = `A2:<br>
+    Length: 32<br>
+    The Z2 is inputted into a Clipped ReLU function, clamp(Z2, 0, 127) to form A2!`;
+
+  } else if (layer.id === "fc2") {
+    content = `Z3:<br>
+    Length: 1<br>
+    A2 is matrix multiplied by the respective weights and then have the respective biases added. This forms Z3, which is used to calculate the positional score of the position!`
+  }
+  layerDescContent.innerHTML = content;
+  layerDesc.style.opacity = '1';
+  layerDesc.style.visibility = 'visible';
+  document.body.style.overflow = 'hidden';
+
+  nodes.forEach((node) => {
+    node.classList.add("overlay");
+  })
+}
+
+function layerDescClose() {
+  layerDescContent.textContent = '';
+  layerDesc.style.opacity = '0';
+  layerDesc.style.visibility = 'hidden';
+  document.body.style.overflow = 'auto';
+
+  nodes.forEach((node) => {
+    node.classList.remove("overlay");
+  })
 }
