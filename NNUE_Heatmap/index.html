@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <title>Chess</title>
   <link rel="stylesheet" href="css/SFNNUE.css">
-  <!--  <link rel="stylesheet" href="https://assets.zyrosite.com/YrDNgq93l5HOqyox/sfnnue-AzG7BGvlPVtv1rOe.css">-->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
@@ -123,34 +122,10 @@
 
 <div id="info-menu">
   <p id="info-menuP"></p>
+  <p id="click-prompt">Click to see evaluation calculation!</p>
 </div>
 
-<div id="piece-menu" class="piece-menu">
-  <div class="square bP"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="menu-bP"
-                              class="chess-piece" alt="Black Pawn" draggable="true"/></div>
-  <div class="square wP"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="menu-wP"
-                              class="chess-piece" alt="White Pawn" draggable="true"/></div>
-  <div class="square bR"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/br-ALpog5D4NqCnkaKZ.png" id="menu-bR"
-                              class="chess-piece" alt="Black Rook" draggable="true"/></div>
-  <div class="square wR"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wr-m7VKXvBaXRHylaPe.png" id="menu-wR"
-                              class="chess-piece" alt="White Rook" draggable="true"/></div>
-  <div class="square bN"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bn-m6LJX7oBXxf1nvyb.png" id="menu-bN"
-                              class="chess-piece" alt="Black Knight" draggable="true"/></div>
-  <div class="square wN"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wn-mxB7KO0Ro4H6rL4B.png" id="menu-wN"
-                              class="chess-piece" alt="White Knight" draggable="true"/></div>
-  <div class="square bB"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bb-mePnKE0RKDSJ6NnM.png" id="menu-bB"
-                              class="chess-piece" alt="Black Bishop" draggable="true"/></div>
-  <div class="square wB"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wb-m7VKXvBa7WTKNaL2.png" id="menu-wB"
-                              class="chess-piece" alt="White Bishop" draggable="true"/></div>
-  <div class="square bQ"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bq-AoPGK2zRLWSveOV0.png" id="menu-bQ"
-                              class="chess-piece" alt="Black Queen" draggable="true"/></div>
-  <div class="square wQ"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wq-d95gnqyxzDhy9N7Z.png" id="menu-wQ"
-                              class="chess-piece" alt="White Queen" draggable="true"/></div>
-  <div class="square bK"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bk-d95gnqyxj6iXqBQk.png" id="menu-bK"
-                              class="chess-piece" alt="Black King" draggable="true"/></div>
-  <div class="square wK"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wk-dJo4gL89gkF1DxVr.png" id="menu-wK"
-                              class="chess-piece" alt="White King" draggable="true"/></div>
-</div>
+<p id="layer-click-prompt">Click a layer to see its description!</p>
 
 <div id="nnue-layers">
   <div id="fc0" class="layer">
@@ -315,14 +290,42 @@
     <div id="fc2_0" class="node fc2"><p id="fc2_0_p" class="fc2_p"></p></div>
   </div>
 
-  <div id="layerDesc">
+  <div id="layerDesc" style="opacity: 0; visibility: hidden;">
     <p id="layerDescContent"></p>
     <button id="desc-close">&times;</button>
   </div>
 </div>
 
-<div id="eval-calc">
+<div id="eval-calc" style="opacity: 0; visibility: hidden;">
   <p id="eval-calcP"></p>
+  <button id="close-calc">&times;</button>
+</div>
+
+<div id="piece-menu" class="piece-menu">
+  <div class="square bP"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="menu-bP"
+                              class="chess-piece" alt="Black Pawn" draggable="true"/></div>
+  <div class="square wP"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="menu-wP"
+                              class="chess-piece" alt="White Pawn" draggable="true"/></div>
+  <div class="square bR"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/br-ALpog5D4NqCnkaKZ.png" id="menu-bR"
+                              class="chess-piece" alt="Black Rook" draggable="true"/></div>
+  <div class="square wR"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wr-m7VKXvBaXRHylaPe.png" id="menu-wR"
+                              class="chess-piece" alt="White Rook" draggable="true"/></div>
+  <div class="square bN"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bn-m6LJX7oBXxf1nvyb.png" id="menu-bN"
+                              class="chess-piece" alt="Black Knight" draggable="true"/></div>
+  <div class="square wN"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wn-mxB7KO0Ro4H6rL4B.png" id="menu-wN"
+                              class="chess-piece" alt="White Knight" draggable="true"/></div>
+  <div class="square bB"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bb-mePnKE0RKDSJ6NnM.png" id="menu-bB"
+                              class="chess-piece" alt="Black Bishop" draggable="true"/></div>
+  <div class="square wB"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wb-m7VKXvBa7WTKNaL2.png" id="menu-wB"
+                              class="chess-piece" alt="White Bishop" draggable="true"/></div>
+  <div class="square bQ"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bq-AoPGK2zRLWSveOV0.png" id="menu-bQ"
+                              class="chess-piece" alt="Black Queen" draggable="true"/></div>
+  <div class="square wQ"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wq-d95gnqyxzDhy9N7Z.png" id="menu-wQ"
+                              class="chess-piece" alt="White Queen" draggable="true"/></div>
+  <div class="square bK"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bk-d95gnqyxj6iXqBQk.png" id="menu-bK"
+                              class="chess-piece" alt="Black King" draggable="true"/></div>
+  <div class="square wK"><img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wk-dJo4gL89gkF1DxVr.png" id="menu-wK"
+                              class="chess-piece" alt="White King" draggable="true"/></div>
 </div>
 
 

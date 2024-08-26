@@ -1,9 +1,19 @@
+html, body {
+  overflow: hidden;
+}
+
 body {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   user-select: none;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar {
+  display: none;
 }
 
 #fen {
@@ -32,6 +42,7 @@ body {
   height: 100px;
   top: -400px;
   left: 400px;
+  cursor: pointer;
 }
 
 #info-menuP {
@@ -46,14 +57,39 @@ body {
   line-height: 2;
 }
 
+#click-prompt {
+  top: -20px;
+  margin-left: 25px;
+  position: relative;
+  display: flex;
+  font-family: 'Oswald', sans-serif;
+  font-size: 18px;
+  text-align: left;
+  color: white;
+  font-weight: bold;
+}
+
+#layer-click-prompt {
+  top: 450px;
+  margin-left: 25px;
+  position: absolute;
+  display: flex;
+  font-family: 'Oswald', sans-serif;
+  font-size: 24px;
+  text-align: left;
+  color: white;
+  line-height: 2;
+  font-weight: bold;
+}
+
 #piece-menu {
+  top: -975px;
   position: relative;
   display: flex;
   justify-content: center;
-  margin-top: 10px;
   width: 400px;
   height: 100px;
-  top: -90px
+  visibility: hidden;
 }
 
 #nnue-layers {
@@ -62,7 +98,7 @@ body {
   flex-direction: column;
   justify-content: center;
   width: 1000px;
-  top: -100px;
+  top: -70px;
 }
 
 #fc0 {
@@ -76,10 +112,17 @@ body {
 }
 
 #eval-calc {
-  margin-top: 100px;
-  position: relative;
+  position: absolute;
   display: flex;
-  width: 1000px
+  width: 1000px;
+  top: 50px;
+  background-color: rgba(26, 26, 26, 1);
+  z-index: 1;
+  border-radius: 25px;
+  border: 5px solid white;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.25s ease-in-out, visibility 0.25s ease-in-out;
 }
 
 #eval-calcP {
@@ -91,6 +134,16 @@ body {
   text-align: left;
   color: white;
   line-height: 2;
+}
+
+#close-calc {
+  position: absolute;
+  left: 965px;
+  background: none;
+  border: none;
+  font-size: 30px;
+  cursor: pointer;
+  color: rgb(255,0, 0);
 }
 
 #layerDesc {
@@ -595,61 +648,73 @@ body {
 }
 
 .square.bP {
-  top: 0px;
-  left: 25px;
+  top: 25px;
+  left: -50px;
+  visibility: visible;
 }
 
 .square.bN {
-  top: 0px;
-  left: 85px;
+  top: 85px;
+  left: -50px;
+  visibility: visible;
 }
 
 .square.bB {
-  top: 0px;
-  left: 145px;
+  top: 145px;
+  left: -50px;
+  visibility: visible;
 }
 
 .square.bR {
-  top: 0px;
-  left: 205px;
+  top: 205px;
+  left: -50px;
+  visibility: visible;
 }
 
 .square.bQ {
-  top: 0px;
-  left: 265px;
+  top: 265px;
+  left: -50px;
+  visibility: visible;
 }
 
 .square.bK {
-  top: 0px;
-  left: 325px;
+  top: 325px;
+  left: -50px;
+  visibility: visible;
 }
 
 .square.wP {
-  top: 50px;
-  left: 25px;
+  top: 25px;
+  left: -100px;
+  visibility: visible;
 }
 
 .square.wN {
-  top: 50px;
-  left: 85px;
+  top: 85px;
+  left: -100px;
+  visibility: visible;
 }
 
 .square.wB {
-  top: 50px;
-  left: 145px;
+  top: 145px;
+  left: -100px;
+  visibility: visible;
 }
 
 .square.wR {
-  top: 50px;
-  left: 205px;
+  top: 205px;
+  left: -100px;
+  visibility: visible;
 }
 
 .square.wQ {
-  top: 50px;
-  left: 265px;
+  top: 265px;
+  left: -100px;
+  visibility: visible;
 }
 
 .square.wK {
-  top: 50px;
-  left: 325px;
+  top: 325px;
+  left: -100px;
+  visibility: visible;
 }

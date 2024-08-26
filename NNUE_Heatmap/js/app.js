@@ -30,6 +30,10 @@ const layerDesc = document.querySelector("#layerDesc");
 const layerDescContent = document.querySelector("#layerDescContent");
 const descClose = document.querySelector("#desc-close");
 
+const infoBox = document.querySelector("#info-menu");
+const calcDesc = document.querySelector("#eval-calc");
+const calcClose = document.querySelector("#close-calc");
+
 const pieceMap = {
   'wP1': 'P', 'wP2': 'P', 'wP3': 'P', 'wP4': 'P', 'wP5': 'P', 'wP6': 'P', 'wP7': 'P', 'wP8': 'P',
   'bP1': 'p', 'bP2': 'p', 'bP3': 'p', 'bP4': 'p', 'bP5': 'p', 'bP6': 'p', 'bP7': 'p', 'bP8': 'p',
@@ -74,6 +78,9 @@ layers.forEach((layer) =>  {
 })
 
 descClose.addEventListener("click", layerDescClose)
+
+infoBox.addEventListener("click", infoBoxClick)
+calcClose.addEventListener("click", closeCalc)
 
 let small
 updateHeatmap()
@@ -335,7 +342,7 @@ function updateHeatmap() {
         adjustedEval = (evaluation * (200 - shuffling) / 214) | 0
         clampedEval = Math.max(-31507, Math.min(adjustedEval, 31507))
 
-        evalCalc.innerHTML = `This is just the positional value. There are many variables in the total evaluation, lets calculate it!
+        evalCalc.innerHTML = `The network gives us the positional value. There are many variables in the total evaluation, lets calculate it!
 <br>PSQT (Piece Square Tables Value) = ${psqt}&emsp;&emsp;PawnCount = ${pawnCount}&emsp;&emsp;50MoveRuleCount = ${shuffling}
 <br>SimpleEvaluation = ${simpleEval}&emsp;&emsp;NPM: (Non Pawn Material) / 64 = ${npm}
 <br>Positional: (Z1[15] * 150 / 127) + Z3 = ${positional}&emsp;&emsp;Complexity: abs(PSQT - Positional) / 16 = ${complexity}
@@ -401,10 +408,10 @@ function layerClick(e) {
   } else if (layer.id === "ac0+acSq0") {
     content = `A1_Sq:<br>
     Length: 15<br>
-    The first 15 indices of Z1 are inputted into a Squared Clipped ReLU function, min(Z1&sup2, 127) to form A1_Sq!<br>&emsp;<br>
+    The first 15 indices of Z1 are inputted into a Squared Clipped ReLU function, min((Z1 >> 19)&sup2, 127), to form A1_Sq!<br>&emsp;<br>
     A1_CR:<br>
     Length: 15<br>
-    The first 15 indices of Z1 are inputted into a Clipped ReLU function, clamp(Z1, 0, 127) to form A1_CR!`;
+    The first 15 indices of Z1 are inputted into a Clipped ReLU function, clamp((Z1 >> 6), 0, 127), to form A1_CR!`;
 
   } else if (layer.id === "acFinal0") {
     content = `A1:<br>
@@ -419,7 +426,7 @@ function layerClick(e) {
   } else if (layer.id === "ac1") {
     content = `A2:<br>
     Length: 32<br>
-    The Z2 is inputted into a Clipped ReLU function, clamp(Z2, 0, 127) to form A2!`;
+    The Z2 is inputted into a Clipped ReLU function, <br>clamp((Z2 >> 6), 0, 127), to form A2!`;
 
   } else if (layer.id === "fc2") {
     content = `Z3:<br>
@@ -429,7 +436,6 @@ function layerClick(e) {
   layerDescContent.innerHTML = content;
   layerDesc.style.opacity = '1';
   layerDesc.style.visibility = 'visible';
-  document.body.style.overflow = 'hidden';
 
   nodes.forEach((node) => {
     node.classList.add("overlay");
@@ -440,9 +446,18 @@ function layerDescClose() {
   layerDescContent.textContent = '';
   layerDesc.style.opacity = '0';
   layerDesc.style.visibility = 'hidden';
-  document.body.style.overflow = 'auto';
 
   nodes.forEach((node) => {
     node.classList.remove("overlay");
   })
+}
+
+function infoBoxClick() {
+  calcDesc.style.opacity = '1';
+  calcDesc.style.visibility = 'visible';
+}
+
+function closeCalc() {
+  calcDesc.style.opacity = '0';
+  calcDesc.style.visibility = 'hidden';
 }
