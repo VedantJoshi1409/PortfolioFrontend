@@ -222,7 +222,7 @@ function isLowerCase(char) {
 
 function updateHeatmap() {
   if (fenDisplay.textContent !== "Invalid: Too many pieces" && fenDisplay.textContent !== "Invalid: Incorrect Amount of Kings") {
-    const url = "https://what1409.onthewifi.com/visualize?fen=" + fenDisplay.textContent;
+    const url = "api_endpoint" + fenDisplay.textContent;
     let fc0 = new Array(16)
     let ac0 = new Array(15)
     let acsq0 = new Array(15)

@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang="">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Bitterfish</title>
+  <link rel="stylesheet" href="css/bitterfish.css">
+<!--    <link rel="stylesheet" href="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bitterfish-AoPGpRKz0eIrJv6Q.css">-->
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body style="background-color: rgb(26,26,26)">
+
+<div id="element">
+  <div id="game" style="opacity: 0; visibility: hidden; display: none">
+    <div id="clocks">
+      <p id="white-clock" class="clock"></p>
+      <p id="black-clock" class="clock"></p>
+    </div>
+    <div id="gameboard">
+      <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/blue-YX4bgn4LoOhpRoWR.png" id="board" alt="Chess Board"/>
+      <div id="squares">
+        <!-- Row 8 -->
+        <div class="square" data-position="a8"></div>
+        <div class="square" data-position="b8"></div>
+        <div class="square" data-position="c8"></div>
+        <div class="square" data-position="d8"></div>
+        <div class="square" data-position="e8"></div>
+        <div class="square" data-position="f8"></div>
+        <div class="square" data-position="g8"></div>
+        <div class="square" data-position="h8"></div>
+
+        <!-- Row 7 -->
+        <div class="square" data-position="a7"></div>
+        <div class="square" data-position="b7"></div>
+        <div class="square" data-position="c7"></div>
+        <div class="square" data-position="d7"></div>
+        <div class="square" data-position="e7"></div>
+        <div class="square" data-position="f7"></div>
+        <div class="square" data-position="g7"></div>
+        <div class="square" data-position="h7"></div>
+
+        <!-- Row 6 -->
+        <div class="square" data-position="a6"></div>
+        <div class="square" data-position="b6"></div>
+        <div class="square" data-position="c6"></div>
+        <div class="square" data-position="d6"></div>
+        <div class="square" data-position="e6"></div>
+        <div class="square" data-position="f6"></div>
+        <div class="square" data-position="g6"></div>
+        <div class="square" data-position="h6"></div>
+
+        <!-- Row 5 -->
+        <div class="square" data-position="a5"></div>
+        <div class="square" data-position="b5"></div>
+        <div class="square" data-position="c5"></div>
+        <div class="square" data-position="d5"></div>
+        <div class="square" data-position="e5"></div>
+        <div class="square" data-position="f5"></div>
+        <div class="square" data-position="g5"></div>
+        <div class="square" data-position="h5"></div>
+
+        <!-- Row 4 -->
+        <div class="square" data-position="a4"></div>
+        <div class="square" data-position="b4"></div>
+        <div class="square" data-position="c4"></div>
+        <div class="square" data-position="d4"></div>
+        <div class="square" data-position="e4"></div>
+        <div class="square" data-position="f4"></div>
+        <div class="square" data-position="g4"></div>
+        <div class="square" data-position="h4"></div>
+
+        <!-- Row 3 -->
+        <div class="square" data-position="a3"></div>
+        <div class="square" data-position="b3"></div>
+        <div class="square" data-position="c3"></div>
+        <div class="square" data-position="d3"></div>
+        <div class="square" data-position="e3"></div>
+        <div class="square" data-position="f3"></div>
+        <div class="square" data-position="g3"></div>
+        <div class="square" data-position="h3"></div>
+
+        <!-- Row 2 -->
+        <div class="square" data-position="a2"></div>
+        <div class="square" data-position="b2"></div>
+        <div class="square" data-position="c2"></div>
+        <div class="square" data-position="d2"></div>
+        <div class="square" data-position="e2"></div>
+        <div class="square" data-position="f2"></div>
+        <div class="square" data-position="g2"></div>
+        <div class="square" data-position="h2"></div>
+
+        <!-- Row 1 -->
+        <div class="square" data-position="a1"></div>
+        <div class="square" data-position="b1"></div>
+        <div class="square" data-position="c1"></div>
+        <div class="square" data-position="d1"></div>
+        <div class="square" data-position="e1"></div>
+        <div class="square" data-position="f1"></div>
+        <div class="square" data-position="g1"></div>
+        <div class="square" data-position="h1"></div>
+      </div>
+
+      <div id="pieces">
+        <!-- White Pieces -->
+        <div id="wP1" class="piece" data-piece="pawn" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="wP1-img"
+               class="chess-piece" alt="White Pawn" draggable="true"/>
+        </div>
+        <div id="wP2" class="piece" data-piece="pawn" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="wP2-img"
+               class="chess-piece" alt="White Pawn" draggable="true"/>
+        </div>
+        <div id="wP3" class="piece" data-piece="pawn" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="wP3-img"
+               class="chess-piece" alt="White Pawn" draggable="true"/>
+        </div>
+        <div id="wP4" class="piece" data-piece="pawn" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="wP4-img"
+               class="chess-piece" alt="White Pawn" draggable="true"/>
+        </div>
+        <div id="wP5" class="piece" data-piece="pawn" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="wP5-img"
+               class="chess-piece" alt="White Pawn" draggable="true"/>
+        </div>
+        <div id="wP6" class="piece" data-piece="pawn" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="wP6-img"
+               class="chess-piece" alt="White Pawn" draggable="true"/>
+        </div>
+        <div id="wP7" class="piece" data-piece="pawn" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="wP7-img"
+               class="chess-piece" alt="White Pawn" draggable="true"/>
+        </div>
+        <div id="wP8" class="piece" data-piece="pawn" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wp-d95gnqyxzEfwDyxZ.png" id="wP8-img"
+               class="chess-piece" alt="White Pawn" draggable="true"/>
+        </div>
+        <div id="wR1" class="piece" data-piece="rook" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wr-m7VKXvBaXRHylaPe.png" id="wR1-img"
+               class="chess-piece" alt="White Rook" draggable="true"/>
+        </div>
+        <div id="wR2" class="piece" data-piece="rook" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wr-m7VKXvBaXRHylaPe.png" id="wR2-img"
+               class="chess-piece" alt="White Rook" draggable="true"/>
+        </div>
+        <div id="wN1" class="piece" data-piece="knight" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wn-mxB7KO0Ro4H6rL4B.png" id="wN1-img"
+          class="chess-piece" alt="White Knight" draggable="true"/>
+        </div>
+        <div id="wN2" class="piece" data-piece="knight" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wn-mxB7KO0Ro4H6rL4B.png" id="wN2-img"
+               class="chess-piece" alt="White Knight" draggable="true"/>
+        </div>
+        <div id="wB1" class="piece" data-piece="bishop" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wb-m7VKXvBa7WTKNaL2.png" id="wB1-img"
+               class="chess-piece" alt="White Bishop" draggable="true"/>
+        </div>
+        <div id="wB2" class="piece" data-piece="bishop" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wb-m7VKXvBa7WTKNaL2.png" id="wB2-img"
+               class="chess-piece" alt="White Bishop" draggable="true"/>
+        </div>
+        <div id="wQ" class="piece" data-piece="queen" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wq-d95gnqyxzDhy9N7Z.png" id="wQ-img"
+                                      class="chess-piece" alt="White Queen" draggable="true"/>
+        </div>
+        <div id="wK" class="piece" data-piece="king" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wk-dJo4gL89gkF1DxVr.png" id="wK-img"
+               class="chess-piece" alt="White King" draggable="true"/>
+        </div>
+
+        <!-- Black Pieces -->
+        <div id="bP1" class="piece" data-piece="pawn" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="bP1-img"
+               class="chess-piece" alt="Black Pawn" draggable="true"/>
+        </div>
+        <div id="bP2" class="piece" data-piece="pawn" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="bP2-img"
+               class="chess-piece" alt="Black Pawn" draggable="true"/>
+        </div>
+        <div id="bP3" class="piece" data-piece="pawn" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="bP3-img"
+               class="chess-piece" alt="Black Pawn" draggable="true"/>
+        </div>
+        <div id="bP4" class="piece" data-piece="pawn" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="bP4-img"
+               class="chess-piece" alt="Black Pawn" draggable="true"/>
+        </div>
+        <div id="bP5" class="piece" data-piece="pawn" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="bP5-img"
+               class="chess-piece" alt="Black Pawn" draggable="true"/>
+        </div>
+        <div id="bP6" class="piece" data-piece="pawn" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="bP6-img"
+               class="chess-piece" alt="Black Pawn" draggable="true"/>
+        </div>
+        <div id="bP7" class="piece" data-piece="pawn" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="bP7-img"
+               class="chess-piece" alt="Black Pawn" draggable="true"/>
+        </div>
+        <div id="bP8" class="piece" data-piece="pawn" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bp-AzG7KLklKgcZ2a4n.png" id="bP8-img"
+               class="chess-piece" alt="Black Pawn" draggable="true"/>
+        </div>
+        <div id="bR1" class="piece" data-piece="rook" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/br-ALpog5D4NqCnkaKZ.png" id="bR1-img"
+               class="chess-piece" alt="Black Rook" draggable="true"/>
+        </div>
+        <div id="bR2" class="piece" data-piece="rook" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/br-ALpog5D4NqCnkaKZ.png" id="bR2-img"
+               class="chess-piece" alt="Black Rook" draggable="true"/>
+        </div>
+        <div id="bN1" class="piece" data-piece="knight" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bn-m6LJX7oBXxf1nvyb.png" id="bN1-img"
+               class="chess-piece" alt="Black Knight" draggable="true"/>
+        </div>
+        <div id="bN2" class="piece" data-piece="knight" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bn-m6LJX7oBXxf1nvyb.png" id="bN2-img"
+               class="chess-piece" alt="Black Knight" draggable="true"/>
+        </div>
+        <div id="bB1" class="piece" data-piece="bishop" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bb-mePnKE0RKDSJ6NnM.png" id="bB1-img"
+               class="chess-piece" alt="Black Bishop" draggable="true"/>
+        </div>
+        <div id="bB2" class="piece" data-piece="bishop" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bb-mePnKE0RKDSJ6NnM.png" id="bB2-img"
+               class="chess-piece" alt="Black Bishop" draggable="true"/>
+        </div>
+        <div id="bQ" class="piece" data-piece="queen" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bq-AoPGK2zRLWSveOV0.png" id="bQ-img"
+               class="chess-piece" alt="Black Queen" draggable="true"/>
+        </div>
+        <div id="bK" class="piece" data-piece="king" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bk-d95gnqyxj6iXqBQk.png" id="bK-img"
+               class="chess-piece" alt="Black King" draggable="true"/>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="start-menu" style="opacity: 0; visibility: hidden;">
+    <button id="start-button">Start Game</button>
+    <div id="options">
+      <div id="time" class="input-container">
+        <label for="time-input" id="time-input-label" class="input-label">Enter time in seconds: </label><input
+        class="input" type="text" id="time-input" placeholder="120">
+      </div>
+      <div id="increment" class="input-container">
+        <label for="increment-input" id="increment-input-label" class="input-label">Enter increment in
+          seconds:</label><input class="input" type="text" id="increment-input" placeholder="1">
+      </div>
+      <div id="player">
+        <button id="white-button" class="side-button active" onclick="toggleActive('white-button', 'black-button')">
+          <img id="button-white-king" class="button-image"
+               src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wk-dJo4gL89gkF1DxVr.png" alt="white king"
+               draggable="false">
+        </button>
+        <button id="black-button" class="side-button" onclick="toggleActive('black-button', 'white-button')">
+          <img id="button-black-king" class="button-image"
+               src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bk-d95gnqyxj6iXqBQk.png" alt="black king"
+               draggable="false">
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="js/app.js"></script>
+
+</body>
+
+</html>
