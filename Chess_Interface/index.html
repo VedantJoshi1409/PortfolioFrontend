@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <title>Bitterfish</title>
   <link rel="stylesheet" href="css/bitterfish.css">
-<!--    <link rel="stylesheet" href="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bitterfish-AoPGpRKz0eIrJv6Q.css">-->
+<!--    <link rel="stylesheet" href="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bitterfish-AoPG53OOoES1bBJp.css">-->
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;700&display=swap" rel="stylesheet">
 </head>
 
@@ -13,12 +13,12 @@
 
 <div id="element">
   <div id="game" style="opacity: 0; visibility: hidden; display: none">
-    <div id="clocks">
-      <p id="white-clock" class="clock"></p>
-      <p id="black-clock" class="clock"></p>
-    </div>
+    <div id="captured-pieces-left" class="capture-box"></div>
+    <div id="captured-pieces-right" class="capture-box"></div>
+    <p id="top-clock" class="clock"></p>
     <div id="gameboard">
       <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/blue-YX4bgn4LoOhpRoWR.png" id="board" alt="Chess Board"/>
+      <div id="tint" style="display: none; visibility: hidden; opacity: 0"></div>
       <div id="squares">
         <!-- Row 8 -->
         <div class="square" data-position="a8"></div>
@@ -234,6 +234,64 @@
                class="chess-piece" alt="Black King" draggable="true"/>
         </div>
       </div>
+
+      <div id="promotions">
+        <div id="wR-promote" class="promotion" data-piece="rook" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wr-m7VKXvBaXRHylaPe.png"
+               class="chess-piece" alt="White Rook" draggable="true"/>
+        </div>
+        <div id="wN-promote" class="promotion" data-piece="knight" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wn-mxB7KO0Ro4H6rL4B.png"
+               class="chess-piece" alt="White Knight" draggable="true"/>
+        </div>
+        <div id="wB-promote" class="promotion" data-piece="bishop" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wb-m7VKXvBa7WTKNaL2.png"
+               class="chess-piece" alt="White Bishop" draggable="true"/>
+        </div>
+        <div id="wQ-promote" class="promotion" data-piece="queen" data-color="white">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/wq-d95gnqyxzDhy9N7Z.png"
+               class="chess-piece" alt="White Queen" draggable="true"/>
+        </div>
+
+        <div id="bR-promote" class="promotion" data-piece="rook" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/br-ALpog5D4NqCnkaKZ.png"
+               class="chess-piece" alt="Black Rook" draggable="true"/>
+        </div>
+        <div id="bN-promote" class="promotion" data-piece="knight" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bn-m6LJX7oBXxf1nvyb.png"
+               class="chess-piece" alt="Black Knight" draggable="true"/>
+        </div>
+        <div id="bB-promote" class="promotion" data-piece="bishop" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bb-mePnKE0RKDSJ6NnM.png"
+               class="chess-piece" alt="Black Bishop" draggable="true"/>
+        </div>
+        <div id="bQ-promote" class="promotion" data-piece="queen" data-color="black">
+          <img src="https://assets.zyrosite.com/YrDNgq93l5HOqyox/bq-AoPGK2zRLWSveOV0.png"
+               class="chess-piece" alt="Black Queen" draggable="true"/>
+        </div>
+      </div>
+    </div>
+    <p id="bottom-clock" class="clock"></p>
+    <button id="resign-button">
+      <img src="" alt="resign flag" id="resign-flag"/>
+    </button>
+    <div id="end-screen" style="opacity: 0; visibility: hidden; display: none">
+      <button id="restart-button">Restart</button>
+      <p id="end-screen-text"></p>
+    </div>
+    <div id="promote-menu" style="opacity: 0; visibility: hidden; display: none">
+      <button id="promote-queen-button" class="promote-button">
+        <img id="promote-queen-img" class="promote-img" alt="queen img" src="">
+      </button>
+      <button id="promote-rook-button" class="promote-button">
+        <img id="promote-rook-img" class="promote-img" alt="rook img" src="">
+      </button>
+      <button id="promote-bishop-button" class="promote-button">
+        <img id="promote-bishop-img" class="promote-img" alt="bishop img" src="">
+      </button>
+      <button id="promote-knight-button" class="promote-button">
+        <img id="promote-knight-img" class="promote-img" alt="knight img" src="">
+      </button>
     </div>
   </div>
   <div id="start-menu" style="opacity: 0; visibility: hidden;">
